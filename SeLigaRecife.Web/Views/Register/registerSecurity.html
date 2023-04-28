@@ -87,10 +87,32 @@
     <footer>
         <div id="footer-bt" class="container text-end mt-4 mb-4a fixed-bottom">
             <div class="row ">
-                <div class="col mt-2 text-end ">
-                    <a href="CreateOrganizer.html">
+                <div class="col mt-2 text-end " style="transform: rotate(180deg);">
+                    <a href="../Home/initial.html">
                         <img src="../../wwwroot/assets/button_next.svg" alt="próxima página">
                     </a>
+                </div>
+                <div class="col mt-2 text-end ">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modalFinishFillData">
+                        <img src="../../wwwroot/assets/button_next.svg" alt="próxima página">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalFinishFillData" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Muito obrigado</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="../../wwwroot/assets/imgs/success.svg" alt="sucesso">
+
+                    </div>
                 </div>
             </div>
         </div>
