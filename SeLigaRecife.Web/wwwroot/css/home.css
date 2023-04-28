@@ -1,0 +1,40 @@
+
+.titulo {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.subtitulo {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+
+@media (max-width: 380px) {
+    #card-maps{
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    #footer-bt{
+        margin-top: 2% !important;
+        margin-bottom: 3% !important;
+    }
+
+}
+
+@media (min-height: 895px) and (max-height:916px) {
+    #header-text {
+        margin-top: 2% !important;
+    }
+
+    #card-maps{
+        margin-top: 10% !important;
+        margin-bottom: 5% !important;
+    }
+
+    #footer-bt{
+        margin-top: 15% !important;
+    }
+}
