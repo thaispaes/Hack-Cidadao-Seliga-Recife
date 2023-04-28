@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using SeLigaRecife.Web.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddDbContext<SeLigaRecifeDbContext>(options =>
+    options.UseMySql("Server=seligabencadb.mysql.database.azure.com;UserID = seligabencaadmin;Password=thaispaes@123;Database=seliga_recife_db;",
+        ServerVersion.Parse("8.0.32-mysql", ServerType.MySql),
+        m => m.MigrationsAssembly(typeof(SeLigaRecifeDbContext).Assembly.FullName)));
 
 var app = builder.Build();
 
