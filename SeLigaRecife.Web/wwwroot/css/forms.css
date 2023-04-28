@@ -1,0 +1,23 @@
+.titulo {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.subtitulo {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+#forms-container select{
+    background-color: rgb(169, 169, 169, 0.18);
+    border-radius: 5px 15px 5px 15px;
+}
+
+#forms-container select:focus{
+    border: none;
+}
+
+#forms-container select option:checked{
+    background-color: rgb(169, 169, 169, 0.18);
+}
+
