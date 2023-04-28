@@ -1,19 +1,21 @@
 
 .titulo {
     margin-bottom: 0;
-    font-weight: bold;
     font-size: 25px;
+    color: white;
 }
 
+.footer-bt{
+    background-color: #0090FF;
+}
 
-
-@media (max-width: 380px) {
-    #card-maps{
+/* @media (max-width: 380px) {
+    #card-maps {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
     }
 
-    #footer-bt{
+    #footer-bt {
         margin-top: 2% !important;
         margin-bottom: 3% !important;
     }
@@ -25,12 +27,12 @@
         margin-top: 2% !important;
     }
 
-    #card-maps{
+    #card-maps {
         margin-top: 10% !important;
         margin-bottom: 5% !important;
     }
 
-    #footer-bt{
+    #footer-bt {
         margin-top: 15% !important;
     }
-}
+} */
