@@ -7,7 +7,7 @@ public class SeLigaRecifeDbContext : DbContext
 {
     public DbSet<OccurrenceType> OccurrenceTypes { get; set; }
     public DbSet<Category> Categories { get; set; }
-    public DbSet<Event> Events { get; set; }
+    public DbSet<Alert> Alerts { get; set; }
 
     public SeLigaRecifeDbContext(DbContextOptions<SeLigaRecifeDbContext> options) : base(options)
     {

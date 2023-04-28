@@ -1,7 +1,8 @@
 ﻿namespace SeLigaRecife.Web.Entities;
 
-public class Event : EntityBase
+public class Alert : EntityBase
 {
     public string FullAddress { get; set; }
+    public OccurrenceType OccurrenceType { get; set; }
 
 }
