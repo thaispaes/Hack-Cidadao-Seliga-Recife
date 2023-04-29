@@ -22,7 +22,7 @@
     </div>
 
 
-
+    <!-- Map Container-->
     <div id="card-maps" class="container-fluid mt-2 mx-0 px-0">
         <div class="card map-container border-0">
             <img src="../../wwwroot/assets/imgs/maps-img.png" />
@@ -47,6 +47,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Card do helper -->
     <div id="finalInstruction"
         class="card position-absolute top-50 start-50 translate-middle mb-3 me-2 rounded-4 shadow-lg"
         style="width: 18rem;" hidden>
@@ -59,23 +61,41 @@
         </div>
     </div>
 
+    <!-- Modal de cadastrar alertas -->
+    <div class="modal fade" id="staticModalAlerts" data-bs-backdrop="static"
+        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Footer "Criar Alerta"-->
     <div class="footer-bt container text-center p-2 m-0 fixed-bottom rounded-top">
-        <a style="text-decoration: none;" class="row container justify-content-center mt-2 mb-2 text-center"
-            href="../Register/registerOcurrency.html">
-            <div class="col-2">
-                <img src="../../wwwroot/assets/icones/alert-icon.svg" />
-            </div>
-            <div class="col-6 align-self-center ">
-                <h2 class="titulo">Criar alerta</h2>
-            </div>
-        </a>
-        <!-- <div class=" col-5 mt-1">
+        <button style="text-decoration: none;" class="btn  justify-content-center mt-2 mb-2 text-center"
+        data-bs-toggle="modal" data-bs-target="#staticModalAlerts">
+            <div class="row">
+                <div class="col-2">
+                    <img src="../../wwwroot/assets/icones/alert-icon.svg" />
+                </div>
+                <div class="col-10 align-self-center ">
                     <h2 class="titulo">Criar alerta</h2>
-            </div> -->
+                </div>
+            </div>
+        </button>
     </div>
 
-    </div>
     <script>
         function showInstructions(){
             document.getElementById('firstinstruction').removeAttribute('hidden');
