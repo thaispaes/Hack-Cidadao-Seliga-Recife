@@ -26,12 +26,7 @@ public class PointController : Controller
         Point forAdd = model;
         _context.Points.Add(forAdd);
         _context.SaveChanges();
-        return RedirectToAction("Index");
-    }
-
-    public IActionResult Home()
-    {
-        return View();
+        return PartialView("_successPointAddedPartial");
     }
 
     public IActionResult GetPointsAjaxHandler()

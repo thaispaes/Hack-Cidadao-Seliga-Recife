@@ -78,7 +78,7 @@
     <!-- Modal de cadastrar alertas -->
     <div class="modal fade" id="staticModalAlerts" data-bs-backdrop="static"
          data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <form asp-action="Add" asp-controller="Point">
+        <form asp-action="Add" id="addPointForm" asp-controller="Point">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -129,10 +129,50 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqmCwD8OdawlN_HA7pfAjlli2JFWbseNk&v=beta&libraries=marker&callback=initMap"
             defer></script>
 
+    <div class="modal" id="successModal" data-bs-backdrop="static"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img width="300" height="50" src="~/assets/imgs/Insira-logo.png">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid d-flex justify-content-center">
+                        <img src="~/assets/imgs/success_image.png" />
+                    </div>
+                    <div class="mb-2 mt-3 d-flex justify-content-center">
+                        <h5 class="titulo">Ponto adicionado!</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
+
 <script>
 
     function initMap() {
+        $('#addPointForm').submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '/point/add',
+                type: 'POST',
+                data: $('#addPointForm').serialize(),
+                success: function (result) {
+                    console.log(result);
+                    $("#staticModalAlerts").removeClass('fade').modal('hide');
+                    $("#successModal").on('hidden.bs.modal', function () {
+                        $('.modal-backdrop').remove();
+                    });
+                    $("#successModal").addClass('fade').modal('show');
+
+
+                }
+            });
+        });
 
 
 
