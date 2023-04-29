@@ -7,3 +7,5 @@
 /SeLigaRecife.Web/bin/Debug/net6.0
 /SeLigaRecife.Web/Migrations
 *.json
+/SeLigaRecife.Web/SeLigaRecife.Web.csproj.user
+/SeLigaRecife.Web/SeLigaRecife.Web.csproj.DotSettings.user

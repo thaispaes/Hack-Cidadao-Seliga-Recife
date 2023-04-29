@@ -1,0 +1,245 @@
+﻿@model SeLigaRecife.Web.ViewModel.PointsViewModel
+@{
+    Layout = "";
+}
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se Liga Recife!</title>
+    <link rel="shortcut icon" type="imagex/png" href="~/assets/ico/seliga_azul_laranja_logobg.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/home.css">
+    <link rel="stylesheet" href="~/css/iframe-card.css">
+</head>
+
+<body>
+
+    <div id="header" class="container-fluid text-center mt-4 ms-md-0">
+        <div class="">
+            <img width="280" height="50" src="~/assets/imgs/nome-initial-page.png" alt="logo">
+        </div>
+    </div>
+
+
+    <!-- Map Container-->
+    <div id="card-maps" class="container-fluid mt-2 mx-0 px-0">
+        <div class="card map-container border-0">
+            <div>
+                <div id="map" class="map-container"></div>
+            </div>
+            @*            <img src="~/assets/imgs/maps-img.png" />
+            *@
+            <div id="instructionsIcon" class="position-absolute bottom-0 end-0 mb-5 me-3 ">
+                <a onclick="showInstructions()" class="btn bg-white rounded-circle btn-lg shadow">
+                    <i class="fa fa-info p-1" style="color: #0090FF"></i>
+                </a>
+            </div>
+            <div id="firstinstruction" class="card position-absolute bottom-0 end-0 mb-3 me-2 rounded-4 shadow-lg"
+                 style="width: 18rem;" hidden>
+                <div class="card-body">
+                    <h6 class="card-title">
+                        O botão <span>Criar alerta</span> é onde você pode relatar incidentes
+                        ocorridos no bairro do Recife.
+                    </h6>
+                    <div class="text-end">
+                        <a id="liveAlertBtn" onclick="hiddenFirstCard()" type="button"
+                           class="btn btn-primary mt-2 ">Proximo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card do helper -->
+    <div id="finalInstruction"
+         class="card position-absolute top-50 start-50 translate-middle mb-3 me-2 rounded-4 shadow-lg"
+         style="width: 18rem;" hidden>
+        <div class="card-body">
+            <h6 class="card-title text-center">
+                Arraste o mapa para visualizar os principais <span>
+                    pontos de
+                    alerta
+                </span> e segurança no bairro do Recife!
+            </h6>
+            <div class="text-center">
+                <a onclick="hiddenLastCard()" type="button" class="btn btn-primary mt-2 rounded-3">Concluir</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de cadastrar alertas -->
+    <div class="modal fade" id="staticModalAlerts" data-bs-backdrop="static"
+         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <form asp-action="Add" asp-controller="Point">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img width="300" height="50" src="~/assets/imgs/Insira-logo.png">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body container">
+                        <div class="mb-2">
+                            <h3 class="titulo mb-2">Vamos lá! </h3>
+                            <h5 class="subtitulo">Informe o tipo de alerta</h5>
+                        </div>
+                        <div class="conteiner forms-container mt-3 mb-4">
+                            <label class="form-label">Tipo</label>
+                            <select class="form-select focus-ring" aria-label="Default select example" required asp-for="AlterTypeAsInt" style="--bs-focus-ring-color: rgba(169, 169, 169, 0.18)">
+                                <option selected>Selecione seu tipo de alerta</option>
+                                <option value="0">Segurança</option>
+                                <option value="1">Perigo</option>
+                            </select>
+                        </div>
+                        <div class="d-flex flex-row-reverse">
+                            <button type="submit" class="btn btn-azul">Proximo</button>
+                        </div>
+                    </div>
+                    <div class="modalfooter text-end">
+                    </div>
+                </div>
+            </div>
+            <input asp-for="Latitude" hidden />
+            <input asp-for="Longitude" hidden />
+        </form>
+    </div>
+
+    <!-- Footer "Criar Alerta"-->
+    <div class="footer-bt container text-center p-2 m-0 fixed-bottom rounded-top">
+        <button style="text-decoration: none;" class="btn  justify-content-center mt-2 mb-2 text-center"
+                data-bs-toggle="modal" data-bs-target="#staticModalAlerts">
+            <div class="row">
+                <div class="col-2">
+                    <img src="~/assets/icones/alert-icon.svg" />
+                </div>
+                <div class="col-10 align-self-center ">
+                    <h2 class="titulo-footer">Criar alerta</h2>
+                </div>
+            </div>
+        </button>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqmCwD8OdawlN_HA7pfAjlli2JFWbseNk&v=beta&libraries=marker&callback=initMap"
+            defer></script>
+
+</body>
+<script>
+
+    function initMap() {
+
+
+
+        var allMarks = [
+            { lat: -8.0605808, lng: -34.8706035 },
+            { lat: -8.0569, lng: -34.86898 },
+        ];
+
+        const recifeCenter = { lat: - 8.063748, lng: -34.871082 };
+
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 14,
+            center: recifeCenter,
+            mapId: 'bdb3a58eb1d0b210',
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+        });
+
+        $.ajax({
+            url: "point/GetPointsAjaxHandler",
+            type: "GET",
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+
+                for (const property of response) {
+                    var iconUrl = "";
+                    if (property.type === 0) {
+                        iconUrl = 'assets/icones/Security-event.svg';
+                    } else {
+                        iconUrl = 'assets/icones/alert-event.svg';
+                    }
+                    var propertyPosition = { lat: property.latitude, lng: property.longitude };
+
+                    const marker = new google.maps.Marker({
+                        position: propertyPosition,
+                        map,
+                        title: "Fazendoteste",
+                        icon: {
+                            url: iconUrl,
+                            scaledSize: new google.maps.Size(90, 70)
+                        }
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                // handle error response
+                console.log("Error: " + error);
+            }
+        });
+
+
+    }
+    window.initMap = initMap;
+
+</script>
+
+<script>
+    function showInstructions() {
+        document.getElementById('firstinstruction').removeAttribute('hidden');
+        document.getElementById('instructionsIcon').setAttribute('hidden', 'hidden');
+    }
+    function hiddenFirstCard() {
+        document.getElementById('firstinstruction').setAttribute('hidden', 'hidden');
+        document.getElementById('finalInstruction').removeAttribute('hidden');
+    }
+    function hiddenLastCard() {
+        document.getElementById('finalInstruction').setAttribute('hidden', 'hidden');
+        document.getElementById('instructionsIcon').removeAttribute('hidden');
+    }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        if (position !== undefined) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            document.getElementById('Latitude').value = lat;
+            document.getElementById('Longitude').value = lng;
+            var location = new google.maps.LatLng(lat, lng);
+            console.log(lat);
+            console.log(lng);
+        }
+
+        // Do something with the location
+    }
+
+    getLocation();
+    showPosition();
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@@2.11.7/dist/umd/popper.min.js"
+        integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+        integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+        crossorigin="anonymous"></script>
+<script src="lib/jquery/dist/jquery.min.js"></script>
+
+</html>

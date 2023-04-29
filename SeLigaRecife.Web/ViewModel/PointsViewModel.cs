@@ -4,18 +4,20 @@ namespace SeLigaRecife.Web.ViewModel;
 
 public class PointsViewModel
 {
-    public double Longitude { get; set; }
-    public double Latitude { get; set; }
+    public string Longitude { get; set; }
+    public string Latitude { get; set; }
     public int AlterTypeAsInt { get; set; }
 
     public static implicit operator Point(PointsViewModel model)
     {
-        return new Point()
+        Point pointForCreate = new()
         {
             CreatedAt = DateTime.Now,
-            Latitude = model.Latitude,
-            Longitude = model.Longitude,
             Type = (PointType)model.AlterTypeAsInt,
         };
+        pointForCreate.Latitude = Convert.ToDouble(model.Latitude, System.Globalization.CultureInfo.InvariantCulture);
+        pointForCreate.Longitude = Convert.ToDouble(model.Longitude, System.Globalization.CultureInfo.InvariantCulture);
+
+        return pointForCreate;
     }
 }

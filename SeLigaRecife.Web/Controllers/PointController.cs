@@ -20,11 +20,13 @@ public class PointController : Controller
         return View();
     }
 
-    public IActionResult AddPoint([FromBody] PointsViewModel model)
+    [HttpPost]
+    public IActionResult Add(PointsViewModel model)
     {
-        _context.Points.Add(model);
-
-        return Ok();
+        Point forAdd = model;
+        _context.Points.Add(forAdd);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
     }
 
     public IActionResult Home()
@@ -37,16 +39,16 @@ public class PointController : Controller
         List<PointsViewModel> poinstForView = new();
         List<Point> pointsFromContext = _context.Points.ToList();
 
-        pointsFromContext.ForEach(point =>
+        var response = pointsFromContext.Select(x =>
         {
-            poinstForView.Add(new PointsViewModel
+            return new
             {
-                Longitude = point.Longitude,
-                Latitude = point.Latitude,
-                AlterTypeAsInt = (int)point.Type
-            });
+                Latitude = x.Latitude,
+                Longitude = x.Longitude,
+                Type = (int)x.Type
+            };
         });
 
-        return Json(poinstForView);
+        return Json(response);
     }
 }
