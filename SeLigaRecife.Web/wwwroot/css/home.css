@@ -5,10 +5,21 @@
     color: white;
 }
 
+.card-title span{
+    color: #0090FF;
+}
+
+.card-body a {
+    background-color: #0090FF;
+}
+
 .footer-bt{
     background-color: #0090FF;
 }
 
+.footer {
+    background-color: #fff !important;
+}
 
  @media (max-height: 667px) {
  
