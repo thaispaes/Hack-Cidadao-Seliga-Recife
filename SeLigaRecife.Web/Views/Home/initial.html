@@ -84,12 +84,31 @@
                         </select>
                     </div>
                     <div class="d-flex flex-row-reverse">
-                      <button type="button" class="btn btn-azul">Proximo</button>  
+                      <button type="button" class="btn btn-azul"
+                      data-bs-toggle="modal" data-bs-target="#staticModalAlertsOK">Proximo</button>  
                     </div>
                     
                 </div>
-                <div class="modalfooter text-end">
-                    
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de "Ponto Adicionado"-->
+    <div class="modal fade" id="staticModalAlertsOK" data-bs-backdrop="static"
+        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <img width="300" height="50" src="../../wwwroot/assets/imgs/Insira-logo.png">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid d-flex justify-content-center">
+                        <img src="../../wwwroot/assets/imgs/success_image.png"/>
+                    </div>
+                    <div class="mb-2 mt-3 d-flex justify-content-center">
+                        <h5 class="titulo">Ponto adicionado!</h5>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,7 +116,7 @@
 
     <!-- Footer "Criar Alerta"-->
     <div class="footer-bt container text-center p-2 m-0 fixed-bottom rounded-top">
-        <button style="text-decoration: none;" class="btn  justify-content-center mt-2 mb-2 text-center"
+        <button style="text-decoration: none;" class="btn justify-content-center mt-2 mb-2 text-center"
         data-bs-toggle="modal" data-bs-target="#staticModalAlerts">
             <div class="row">
                 <div class="col-2">
