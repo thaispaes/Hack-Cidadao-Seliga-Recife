@@ -33,46 +33,48 @@
 
 <body>
 
-    <header class="h-10">
-         <div id="header" class="container row text-center mt-3 ms-md-0 ">
-        <div class=" col-10 mt-1">
+    <header>
+         <div id="header" class="container text-center mt-4 ms-md-0 pt-3">
+        <div class="">
             <img width="280" height="50" src="~/assets/imgs/nome-initial-page.png" alt="logo">
         </div>
-            <div id="instructionsIcon" class="col-1 ">
-                <a onclick="showInstructions()" class="btn bg-white rounded-circle btn-lg shadow">
-                    <i class="fa fa-info p-1" style="color: #0090FF"></i>
-                </a>
-            </div>
     </div>
     </header>
    
 
     <main>
         <!-- Map Container-->
-        <div id="card-maps" class="container-fluid mt-2 mx-0 px-0 ">
+        <div id="card-maps" class="container mt-2 mx-0 px-0 pb-5" >
+            <div class="card map-container border-0">
             <div>
-                <div id="map" class="map-container"></div>
+                            <div id="map" class="map-container"></div>
+                        </div>
+                        @*            <img src="~/assets/imgs/maps-img.png" />
+                        *@
             </div>
-            @*            <img src="~/assets/imgs/maps-img.png" />
-            *@
+            <div id="instructionsIcon" class="mb-5 fixed-bottom mt-0 mx-3 pb-5 d-flex flex-row-reverse">
+                <a onclick="showInstructions()" class="btn bg-white rounded-circle btn-lg shadow">
+                    <i class="fa fa-info p-1" style="color: #0090FF"></i>
+                </a>
+            </div>
         </div>
 
     </main>
    
     <!-- Card do helper -->
-    <div id="firstinstruction" class="card position-absolute end-0 mb-3 me-2 rounded-4 shadow-lg"
-                 style="width: 18rem;" hidden>
-                <div class="card-body">
-                    <h6 class="card-title">
-                        O botão <span>Criar alerta</span> é onde você pode relatar incidentes
-                        ocorridos no bairro do Recife.
-                    </h6>
-                    <div class="text-end">
-                        <a id="liveAlertBtn" onclick="hiddenFirstCard()" type="button"
-                           class="btn btn-primary mt-2 ">Proximo</a>
-                    </div>
-                </div>
+    <div id="firstinstruction" class="card position-absolute bottom-0 end-0 mb-5 me-2 rounded-4 shadow-lg"
+         style="width: 18rem; margin-bottom: 180px !important;" hidden>
+        <div class="card-body">
+            <h6 class="card-title">
+                O botão <span>Criar alerta</span> é onde você pode relatar incidentes
+                ocorridos no bairro do Recife.
+            </h6>
+            <div class="text-end">
+                <a id="liveAlertBtn" onclick="hiddenFirstCard()" type="button"
+                   class="btn btn-primary mt-2 ">Proximo</a>
             </div>
+        </div>
+    </div>
     <div id="finalInstruction"
          class="card position-absolute top-50 start-50 translate-middle mb-3 me-2 rounded-4 shadow-lg"
          style="width: 18rem;" hidden>
@@ -126,9 +128,9 @@
     </div>
 
     <!-- Footer "Criar Alerta"-->
-    <footer class="">
+    <footer>
         <div class="footer-bt container text-center p-2 m-0 fixed-bottom rounded-top ">
-            <button style="text-decoration: none;" class="btn  justify-content-center mt-1 mb-1 text-center"
+            <button style="text-decoration: none;" class="btn  justify-content-center mt-2 mb-2 text-center"
                     data-bs-toggle="modal" data-bs-target="#staticModalAlerts">
                 <div class="row">
                     <div class="col-2">
