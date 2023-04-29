@@ -51,7 +51,7 @@
     background-color: #fff !important;
 }
 
- @media (max-height: 667px) {
+@media (max-height: 667px) {
  
     .map-container{
         height: 498px;
