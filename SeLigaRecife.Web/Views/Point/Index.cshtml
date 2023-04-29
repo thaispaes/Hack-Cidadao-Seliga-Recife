@@ -199,11 +199,22 @@
                 console.log(response);
 
                 for (const property of response) {
+
                     var iconUrl = "";
+
+                    let html = "";
+
                     if (property.type === 0) {
                         iconUrl = 'assets/icones/Security-event.svg';
+                        //infoWindow = new google.maps.InfoWindow({
+                        //    content:  '<div style="">< img src="assets/icones/security.png" > Ponto Seguro.<div/>'
+                        //});
                     } else {
                         iconUrl = 'assets/icones/alert-event.svg';
+                        //infoWindow = new google.maps.InfoWindow({
+                        //    content: '<div style="">< img src="assets/icones/alert.png" > Pouco iluminado.<div/>'
+                        //});
+
                     }
                     var propertyPosition = { lat: property.latitude, lng: property.longitude };
 
@@ -216,6 +227,12 @@
                             scaledSize: new google.maps.Size(90, 70)
                         }
                     });
+
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infoWindow.setContent(html);
+                        infoWindow.open(map, marker);
+                    });
+
                 }
             },
             error: function (xhr, status, error) {
