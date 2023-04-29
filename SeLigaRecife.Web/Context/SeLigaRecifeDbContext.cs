@@ -8,6 +8,7 @@ public class SeLigaRecifeDbContext : DbContext
     public DbSet<OccurrenceType> OccurrenceTypes { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Alert> Alerts { get; set; }
+    public DbSet<Point> Points { get; set; }
 
     public SeLigaRecifeDbContext(DbContextOptions<SeLigaRecifeDbContext> options) : base(options)
     {

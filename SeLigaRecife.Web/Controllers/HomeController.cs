@@ -15,7 +15,7 @@ namespace SeLigaRecife.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return File("~/Views/Home/initial.html","text/html");
         }
 
         public IActionResult Privacy()
