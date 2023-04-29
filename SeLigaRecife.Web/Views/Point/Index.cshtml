@@ -18,6 +18,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/home.css">
     <link rel="stylesheet" href="~/css/iframe-card.css">
+
+    <style>
+        .gmnoprint {
+            display: none;
+        }
+
+        .gm-control-active {
+            display: none;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -168,18 +179,15 @@
                         $('.modal-backdrop').remove();
                     });
                     $("#successModal").addClass('fade').modal('show');
-
-
+                    loadData();
                 }
             });
         });
+        loadData();
+    }
+    window.initMap = initMap;
 
-
-
-        var allMarks = [
-            { lat: -8.0605808, lng: -34.8706035 },
-            { lat: -8.0569, lng: -34.86898 },
-        ];
+    function loadData() {
 
         const recifeCenter = { lat: - 8.063748, lng: -34.871082 };
 
@@ -240,11 +248,7 @@
                 console.log("Error: " + error);
             }
         });
-
-
     }
-    window.initMap = initMap;
-
 </script>
 
 <script>

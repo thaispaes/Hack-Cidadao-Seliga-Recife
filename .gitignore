@@ -9,3 +9,4 @@
 *.json
 /SeLigaRecife.Web/SeLigaRecife.Web.csproj.user
 /SeLigaRecife.Web/SeLigaRecife.Web.csproj.DotSettings.user
+/SeLigaRecife.Web/bin/Release/net6.0
