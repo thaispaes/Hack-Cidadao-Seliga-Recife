@@ -1,8 +1,32 @@
 
-.titulo {
+.titulo-footer {
     margin-bottom: 0;
     font-size: 25px;
     color: white;
+}
+
+.titulo {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.subtitulo {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.form-select {
+    border-radius: 5px 15px 5px 15px;
+}
+
+.forms-container select:focus{
+    border: none;
+    border-color: rgba(169, 169, 169, 0.18);
+}
+
+.btn-azul {
+    background-color: #0090FF;
 }
 
 .card-title span{
@@ -11,6 +35,12 @@
 
 .card-body a {
     background-color: #0090FF;
+}
+
+.modal-body button{
+    background-color: #0090FF;
+    border: none;
+    color: white;
 }
 
 .footer-bt{
